@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import 'tailwindcss';
+
+@theme {
+	/* PRIMARY */
+	--color-primary-darker: rgba(54, 18, 100, 1);
+	--color-primary-dark: rgba(81, 27, 149, 1);
+	--color-primary-default: rgba(108, 36, 199, 1);
+	--color-primary-light: rgba(137, 80, 210, 1);
+	--color-primary-lighter: rgba(196, 167, 233, 1);
+
+	/* SECONDARY */
+	--color-secondary-darker: rgba(21, 21, 21, 1);
+	--color-secondary-dark: rgba(63, 63, 63, 1);
+	--color-secondary-default: rgba(86, 86, 86, 1);
+	--color-secondary-light: rgba(124, 124, 124, 1);
+	--color-secondary-lighter: rgba(165, 165, 165, 1);
+
+	/* GRAY - SURFACE */
+	--color-surface-secondary-darker: rgba(129, 129, 129, 1);
+	--color-surface-secondary-dark: rgba(170, 170, 170, 1);
+	--color-surface-secondary-default: rgba(205, 205, 205, 1);
+	--color-surface-secondary-light: rgba(235, 235, 235, 1);
+	--color-surface-secondary-lighter: rgba(246, 246, 246, 1);
+
+	/* SUCCESS */
+	--color-success-darker: rgba(16, 98, 53, 1);
+	--color-success-dark: rgba(23, 147, 79, 1);
+	--color-success-default: rgba(31, 196, 105, 1);
+	--color-success-light: rgba(76, 208, 135, 1);
+	--color-success-lighter: rgba(165, 231, 195, 1);
+
+	/* DANGER */
+	--color-danger-darker: rgba(113, 36, 39, 1);
+	--color-danger-dark: rgba(169, 54, 58, 1);
+	--color-danger-default: rgba(225, 72, 77, 1);
+	--color-danger-light: rgba(231, 109, 113, 1);
+	--color-danger-lighter: rgba(243, 182, 184, 1);
+
+	/* WARNING */
+	--color-warning-darker: rgba(125, 83, 10, 1);
+	--color-warning-dark: rgba(188, 125, 14, 1);
+	--color-warning-default: rgba(250, 166, 19, 1);
+	--color-warning-light: rgba(251, 184, 66, 1);
+	--color-warning-lighter: rgba(253, 219, 161, 1);
+
+	/* INFO */
+	--color-info-darker: rgba(46, 96, 118, 1);
+	--color-info-dark: rgba(68, 144, 176, 1);
+	--color-info-default: rgba(91, 192, 235, 1);
+	--color-info-light: rgba(124, 205, 239, 1);
+	--color-info-lighter: rgba(189, 230, 247, 1);
+
+	/* BACKGROUND */
+	--color-background-light: rgba(255, 255, 255, 1);
+	--color-background-dark: rgba(11, 11, 50, 1);
+
+	/* BREAKPOINTS */
+	--breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 976px;
+  --breakpoint-xl: 1440px;
+} 
+
+@layer base {
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+		outline: 0;
+	}
+
+	html,
+	body {
+		font-family: 'Montserrat', sans-serif;
+		font-optical-sizing: auto;
+		-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
+		scroll-behavior: smooth;
+		color: var(--color-secondary-default);
+	}
+
+	a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	ul,
+	ol {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	button {
+		cursor: pointer;
+	}
+}
