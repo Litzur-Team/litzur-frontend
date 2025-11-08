@@ -10,14 +10,14 @@ import Button from '@/components/Button'
 
 
 
-const signInSchema = z.object({
+const signUpSchema = z.object({
 	name: z.string().min(2, 'Escreva seu nome').regex(/^[^0-9]*$/, "Não pode conter números e símbolos"),
 	email: z.string().email('E-mail inválido'),
 	password: z.string().min(6, 'A senha deve ter no mínimo 6 caracteres'),
 	telefone: z.string().min(11, 'O telefone deve ter no mínimo 11 números').max(11, 'O telefone deve ter no máximo 11 números'),
 })
 
-type SignInFormData = z.infer<typeof signInSchema>
+type SignUpFormData = z.infer<typeof signUpSchema>
 
 
 
@@ -27,12 +27,12 @@ export default function SignUpForm() {
 		control,
 		handleSubmit,
 		formState: { errors, isSubmitting },
-	} = useForm<SignInFormData>({
-		resolver: zodResolver(signInSchema),
+	} = useForm<SignUpFormData>({
+		resolver: zodResolver(signUpSchema),
 	})
 
-	async function onSubmit(data: SignInFormData) {
-		console.log('Login data:', data)
+	async function onSubmit(data: SignUpFormData) {
+		console.log('Cadastro data:', data)
 	}
 
 	return (
