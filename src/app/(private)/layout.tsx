@@ -1,7 +1,8 @@
-import { Metadata } from "next"
+import Navbar from '@/components/Navbar'
+import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  robots: 'noindex, nofollow',
+	robots: 'noindex, nofollow',
 }
 
 export default function PrivateLayout({
@@ -12,9 +13,11 @@ export default function PrivateLayout({
 	return (
 		<html lang='pt-BR'>
 			<body>
-        <h1>Private</h1>
-        {children}
-      </body>
+				<header>
+					<Navbar />
+				</header>
+				<main>{children}</main>
+			</body>
 		</html>
 	)
 }
