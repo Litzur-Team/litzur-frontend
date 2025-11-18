@@ -4,15 +4,16 @@ import React, { useState } from 'react';
 
 import Image from '@/components/AppImage';
 import Button from '@/components/ui/Button';
+import { Page } from '@/types';
 
 interface PageListItemProps {
-  page: any;
-  onEdit: (id: number) => void;
-  onDuplicate: (id: number) => void;
-  onDelete: (id: number) => void;
-  onTogglePublish: (id: number) => void;
+  page: Page;
+  onEdit: (id: string | number) => void;
+  onDuplicate: (id: string | number) => void;
+  onDelete: (id: string | number) => void;
+  onTogglePublish: (id: string | number) => void;
   isSelected: boolean;
-  onSelect: (id: number, selected: boolean) => void;
+  onSelect: (id: string | number, selected: boolean) => void;
 }
 
 const PageListItem: React.FC<PageListItemProps> = ({ 
@@ -68,7 +69,7 @@ const PageListItem: React.FC<PageListItemProps> = ({
         <div className="flex items-center space-x-3">
           <div className="w-12 h-8 bg-surface-secondary-light rounded overflow-hidden flex-shrink-0">
             <Image
-              src={page?.thumbnail}
+              src={page?.thumbnail || '/placeholder-image.jpg'}
               alt={`Miniatura da página ${page?.title}`}
               className="w-full h-full object-cover"
             />

@@ -3,15 +3,16 @@
 import React from 'react';
 import PageCard from './PageCard';
 import Icon from '@/components/AppIcon';
+import { Page } from '@/types';
 
 interface PageGridProps {
-  pages: any[];
-  onEdit: (id: number) => void;
-  onDuplicate: (id: number) => void;
-  onDelete: (id: number) => void;
-  onTogglePublish: (id: number) => void;
-  selectedPages: number[];
-  onSelectPage: (id: number, selected: boolean) => void;
+  pages: Page[];
+  onEdit: (id: string | number) => void;
+  onDuplicate: (id: string | number) => void;
+  onDelete: (id: string | number) => void;
+  onTogglePublish: (id: string | number) => void;
+  selectedPages: (string | number)[];
+  onSelectPage: (id: string | number, selected: boolean) => void;
 }
 
 const PageGrid: React.FC<PageGridProps> = ({ 

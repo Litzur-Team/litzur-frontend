@@ -6,13 +6,12 @@ import { ChevronDown, Check, Search, X } from "lucide-react";
 import { cn } from "../../utils/cn";
 import Button from "./Button";
 import Input from "./Input";
-import { SelectProps } from "../../types/components";
+import { SelectProps, SelectOption } from "../../types/components";
 
 const Select = React.forwardRef<HTMLButtonElement, SelectProps>(({
     className,
     options = [],
     value,
-    defaultValue,
     placeholder = "Select an option",
     multiple = false,
     disabled = false,
@@ -69,7 +68,7 @@ const Select = React.forwardRef<HTMLButtonElement, SelectProps>(({
         }
     };
 
-    const handleOptionSelect = (option: any) => {
+    const handleOptionSelect = (option: SelectOption) => {
         if (multiple) {
             const newValue = (value || []) as string[];
             const updatedValue = newValue?.includes(option?.value)

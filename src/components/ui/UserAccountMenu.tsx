@@ -16,15 +16,14 @@ const UserAccountMenu: React.FC<UserAccountMenuProps> = ({ user = null }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [userInfo, setUserInfo] = useState<User | null>(null);
 
-  // Mock user data - replace with actual user context/state
-  const defaultUser: User = {
-    name: 'John Doe',
-    email: 'john.doe@example.com',
-    avatar: '/assets/images/avatar-placeholder.png',
-    role: 'Designer'
-  };
-
   useEffect(() => {
+    // Mock user data - replace with actual user context/state
+    const defaultUser: User = {
+      name: 'John Doe',
+      email: 'john.doe@example.com',
+      avatar: '/assets/images/avatar-placeholder.png',
+      role: 'Designer'
+    };
     setUserInfo(user || defaultUser);
   }, [user]);
 

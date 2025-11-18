@@ -126,13 +126,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
                 return renderFallbackButton();
             }
 
-            const child = React.Children?.only(children) as React.ReactElement<any>;
+            const child = React.Children?.only(children) as React.ReactElement;
 
             if (!React.isValidElement(child)) {
                 return renderFallbackButton();
             }
             
-            const childProps = child?.props as any;
+            const childProps = child?.props as { children?: React.ReactNode; className?: string; disabled?: boolean };
             
             const content = (
                 <>
@@ -151,7 +151,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
                 ),
                 disabled: disabled || loading || childProps?.disabled,
                 children: content,
-            } as any);
+            } as React.HTMLAttributes<HTMLElement>);
 
             return <Comp ref={ref} {...props}>{clonedChild}</Comp>;
         } catch {

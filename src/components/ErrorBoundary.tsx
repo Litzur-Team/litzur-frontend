@@ -17,13 +17,13 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
     this.state = { hasError: false };
   }
 
-  static getDerivedStateFromError(_error: Error): ErrorBoundaryState {
+  static getDerivedStateFromError(): ErrorBoundaryState {
     return { hasError: true };
   }
 
   componentDidCatch(error: Error & { __ErrorBoundary?: boolean }, errorInfo: React.ErrorInfo) {
     error.__ErrorBoundary = true;
-    (window as any).__COMPONENT_ERROR__?.(error, errorInfo);
+    (window as Window & { __COMPONENT_ERROR__?: (error: Error, errorInfo: React.ErrorInfo) => void }).__COMPONENT_ERROR__?.(error, errorInfo);
     // console.log("Error caught by ErrorBoundary:", error, errorInfo);
   }
 

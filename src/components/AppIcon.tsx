@@ -13,7 +13,7 @@ function Icon({
     strokeWidth = 2,
     ...props
 }: IconProps & Omit<LucideProps, keyof IconProps>) {
-    const IconComponent = (LucideIcons as any)?.[name] as React.ComponentType<LucideProps>;
+    const IconComponent = (LucideIcons as unknown as Record<string, React.ComponentType<LucideProps>>)?.[name];
 
     if (!IconComponent) {
         return <HelpCircle size={size} color="gray" strokeWidth={strokeWidth} className={className} {...props} />;

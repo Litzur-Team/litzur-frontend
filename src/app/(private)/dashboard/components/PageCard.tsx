@@ -4,15 +4,16 @@ import React, { useState } from 'react';
 
 import Image from '@/components/AppImage';
 import Button from '@/components/ui/Button';
+import { Page } from '@/types';
 
 interface PageCardProps {
-  page: any;
-  onEdit: (id: number) => void;
-  onDuplicate: (id: number) => void;
-  onDelete: (id: number) => void;
-  onTogglePublish: (id: number) => void;
+  page: Page;
+  onEdit: (id: string | number) => void;
+  onDuplicate: (id: string | number) => void;
+  onDelete: (id: string | number) => void;
+  onTogglePublish: (id: string | number) => void;
   isSelected: boolean;
-  onSelect: (id: number, selected: boolean) => void;
+  onSelect: (id: string | number, selected: boolean) => void;
 }
 
 const PageCard: React.FC<PageCardProps> = ({ 
@@ -67,7 +68,7 @@ const PageCard: React.FC<PageCardProps> = ({
       {/* Thumbnail */}
       <div className="relative h-48 bg-surface-secondary-light overflow-hidden">
         <Image
-          src={page?.thumbnail}
+          src={page?.thumbnail || '/placeholder-image.jpg'}
           alt={`Miniatura da página ${page?.title}`}
           className="w-full h-full object-cover"
         />

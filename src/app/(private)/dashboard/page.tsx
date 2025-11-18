@@ -10,7 +10,7 @@ import DeleteConfirmModal from './components/DeleteConfirmModal'
 import StatsOverview from './components/StatsOverview'
 
 interface PageType {
-	id: number
+	id: string | number
 	title: string
 	thumbnail: string
 	status: 'published' | 'draft' | 'scheduled'
@@ -23,7 +23,7 @@ interface PageType {
 
 interface DeleteModalState {
 	isOpen: boolean
-	pageId: number | null
+	pageId: string | number | null
 	pageTitle: string
 	isMultiple: boolean
 }
@@ -37,7 +37,7 @@ export default function Dashboard() {
 	const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc')
 	const [filterStatus, setFilterStatus] = useState<string>('all')
 	const [searchQuery, setSearchQuery] = useState<string>('')
-	const [selectedPages, setSelectedPages] = useState<number[]>([])
+	const [selectedPages, setSelectedPages] = useState<(string | number)[]>([])
 	const [deleteModal, setDeleteModal] = useState<DeleteModalState>({
 		isOpen: false,
 		pageId: null,
@@ -193,7 +193,7 @@ export default function Dashboard() {
 		}
 	}
 
-	const handleSelectPage = (pageId: number, isSelected: boolean) => {
+	const handleSelectPage = (pageId: string | number, isSelected: boolean) => {
 		if (isSelected) {
 			setSelectedPages((prev) => [...prev, pageId])
 		} else {
@@ -209,18 +209,19 @@ export default function Dashboard() {
 		}
 	}
 
-	const handleEdit = (pageId: number) => {
+	const handleEdit = (pageId: string | number) => {
 		// Store pageId in sessionStorage for Next.js navigation
 		sessionStorage.setItem('editPageId', String(pageId))
 		router.push('/canvas-editor')
 	}
 
-	const handleDuplicate = (pageId: number) => {
+	const handleDuplicate = (pageId: string | number) => {
 		const originalPage = pages?.find((p) => p?.id === pageId)
 		if (originalPage) {
+			const maxId = Math.max(...pages?.map((p) => typeof p?.id === 'number' ? p?.id : 0))
 			const newPage: PageType = {
 				...originalPage,
-				id: Math.max(...pages?.map((p) => p?.id)) + 1,
+				id: maxId + 1,
 				title: `${originalPage?.title} (Cópia)`,
 				status: 'draft' as const,
 				lastModified: new Date(),
@@ -232,7 +233,7 @@ export default function Dashboard() {
 		}
 	}
 
-	const handleDelete = (pageId: number) => {
+	const handleDelete = (pageId: string | number) => {
 		const page = pages?.find((p) => p?.id === pageId)
 		setDeleteModal({
 			isOpen: true,
@@ -279,7 +280,7 @@ export default function Dashboard() {
 		})
 	}
 
-	const handleTogglePublish = (pageId: number) => {
+	const handleTogglePublish = (pageId: string | number) => {
 		setPages((prev) =>
 			prev?.map((page) =>
 				page?.id === pageId

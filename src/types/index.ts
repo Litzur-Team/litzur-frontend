@@ -20,8 +20,8 @@ export interface PageComponent {
   id: string
   type: string
   name: string
-  content: Record<string, any>
-  styles: Record<string, any>
+  content: Record<string, unknown>
+  styles: Record<string, unknown>
   position: number
 }
 
@@ -76,7 +76,7 @@ export interface ComponentProp {
   name: string
   type: string
   required: boolean
-  default?: any
+  default?: unknown
   description?: string
 }
 

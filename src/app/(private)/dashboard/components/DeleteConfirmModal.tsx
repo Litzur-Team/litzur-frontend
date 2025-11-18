@@ -53,7 +53,7 @@ const DeleteConfirmModal: React.FC<DeleteConfirmModalProps> = ({
               </p>
             ) : (
               <p className="text-secondary-default">
-                Tem certeza de que deseja excluir a página <strong>"{pageTitle}"</strong>? 
+                Tem certeza de que deseja excluir a página <strong>&quot;{pageTitle}&quot;</strong>? 
                 Esta ação removerá permanentemente a página e todos os dados associados.
               </p>
             )}
