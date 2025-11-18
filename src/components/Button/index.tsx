@@ -55,7 +55,7 @@ export default function Button({
 				aria-disabled={isDisabled}
 				{...(Object.fromEntries(
 					Object.entries(props).filter(([k]) => k.startsWith('aria-') || k.startsWith('data-'))
-				) as any)}
+				) as Record<string, unknown>)}
 			>
 				{content}
 			</Link>
