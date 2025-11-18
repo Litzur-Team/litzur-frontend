@@ -30,9 +30,10 @@ const Select = React.forwardRef<HTMLButtonElement, SelectProps>(({
 }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
+    const generatedId = React.useId();
 
     // Generate unique ID if not provided
-    const selectId = id || `select-${Math.random()?.toString(36)?.substr(2, 9)}`;
+    const selectId = id || `select-${generatedId}`;
 
     // Filter options based on search
     const filteredOptions = searchable && searchTerm
