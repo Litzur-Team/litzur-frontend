@@ -54,7 +54,7 @@ export default function SignInForm() {
 
 				<Link
 					className='text-primary-default w-fit text-xs transition duration-200 ease-in-out hover:font-semibold hover:brightness-125'
-					href={'#'}
+					href={'/forgotpassword'}
 				>
 					Esqueci minha senha
 				</Link>
