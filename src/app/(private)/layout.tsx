@@ -11,13 +11,11 @@ export default function PrivateLayout({
 	children: React.ReactNode
 }>) {
 	return (
-		<html lang='pt-BR'>
-			<body>
-				<header>
-					<Navbar />
-				</header>
-				<main>{children}</main>
-			</body>
-		</html>
+		<>
+			<header>
+				<Navbar />
+			</header>
+			<main>{children}</main>
+		</>
 	)
 }

@@ -321,7 +321,7 @@ export default function Dashboard() {
 	const handleCreateNew = (type: string) => {
 		switch (type) {
 			case 'blank':
-				router.push('/canvas-editor')
+				router.push('/pageEditor')
 				break
 			case 'template':
 				router.push('/template-gallery')

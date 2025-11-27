@@ -5,16 +5,10 @@ export const metadata: Metadata = {
 	description: 'Acompanhe e gerencie suas páginas de forma eficiente.',
 }
 
-export default function DashboardSeo({
+export default function DashboardLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode
 }>) {
-	return (
-		<html lang='pt-BR'>
-			<body>
-				<main>{children}</main>
-			</body>
-		</html>
-	)
+	return <>{children}</>
 }
