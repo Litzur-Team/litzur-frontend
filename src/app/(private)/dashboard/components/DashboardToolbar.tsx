@@ -116,7 +116,7 @@ const DashboardToolbar: React.FC<DashboardToolbarProps> = ({
             iconPosition="left"
             iconSize={16}
             variant={'success'}
-            className='text-white hover:bg-success-dark'
+            className='text-white hover:bg-success-dark hidden lg:inline-flex'
           >
             Criar Nova Página
           </Button>

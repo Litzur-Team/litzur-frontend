@@ -1,14 +1,9 @@
-export default function RootLayout({
+import '../globals.css'
+
+export default function LandingPageLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode
 }>) {
-	return (
-		<html lang='pt-BR'>
-			<body>
-				<h1>Landing Layout</h1>
-        {children}
-      </body>
-		</html>
-	)
+	return <>{children}</>
 }
