@@ -1,3 +1,4 @@
+import ProtectedRoute from '@/components/ProtectedRoute'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -10,5 +11,5 @@ export default function EditorLayout({
 }: Readonly<{
 	children: React.ReactNode
 }>) {
-	return <>{children}</>
+	return <ProtectedRoute>{children}</ProtectedRoute>
 }

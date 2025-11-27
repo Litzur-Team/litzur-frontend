@@ -28,7 +28,7 @@ interface UndoAction {
 
 type ViewMode = 'desktop' | 'tablet' | 'mobile'
 
-const pageEditor = () => {
+const PageEditor = () => {
 	const router = useRouter()
 	const [selectedComponent, setSelectedComponent] =
 		useState<PageComponent | null>(null)
@@ -821,4 +821,4 @@ const pageEditor = () => {
 	)
 }
 
-export default pageEditor
+export default PageEditor
