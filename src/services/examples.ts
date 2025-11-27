@@ -1,7 +1,7 @@
 // Exemplo de como usar os serviços no Dashboard
 // Este arquivo serve como referência para integrar o pageService
 
-import { pageService } from '@/services/pageService'
+import { pageService } from '@/services/PageService'
 import { Page } from '@/types/api'
 
 // Exemplo 1: Carregar páginas no dashboard
@@ -89,7 +89,7 @@ async function savePage(id: string, content: any) {
 'use client'
 
 import { useState, useEffect } from 'react'
-import { pageService } from '@/services/pageService'
+import { pageService } from '@/services/PageService'
 import { Page, ApiError } from '@/types/api'
 
 export default function MyDashboard() {

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { pageService } from '@/services/pageService'
+import { pageService } from '@/services/PageService'
 import { Page, CreatePageDTO, UpdatePageDTO, ApiError } from '@/types/api'
 
 export function usePages() {
