@@ -4,17 +4,22 @@ import { useForm, Controller } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
+import toast from 'react-hot-toast'
 import TextInput from '@/components/TextInput'
 import Button from '@/components/Button'
+import { useAuth } from '@/contexts/AuthContext'
+import { ApiError } from '@/types/api'
 
 
 
 
 const signUpSchema = z.object({
-	name: z.string().min(2, 'Escreva seu nome').regex(/^[^0-9]*$/, "Não pode conter números e símbolos"),
-	email: z.string().email('E-mail inválido'),
-	password: z.string().min(6, 'A senha deve ter no mínimo 6 caracteres'),
-	telefone: z.string().min(11, 'O telefone deve ter no mínimo 11 números').max(11, 'O telefone deve ter no máximo 11 números'),
+	name: z.string().min(1, 'O nome é obrigatório').min(2, 'O nome deve ter no mínimo 2 caracteres').regex(/^[^0-9]*$/, "O nome não pode conter números e símbolos"),
+	email: z.string().min(1, 'O e-mail é obrigatório').email('E-mail inválido'),
+	password: z.string().min(1, 'A senha é obrigatória').min(6, 'A senha deve ter no mínimo 6 caracteres'),
+	telefone: z.string().min(1, 'O telefone é obrigatório').min(11, 'O telefone deve ter 11 dígitos').max(11, 'O telefone deve ter 11 dígitos'),
 })
 
 type SignUpFormData = z.infer<typeof signUpSchema>
@@ -22,6 +27,10 @@ type SignUpFormData = z.infer<typeof signUpSchema>
 
 
 export default function SignUpForm() {
+	const router = useRouter()
+	const { register: registerUser } = useAuth()
+	const [errorMessage, setErrorMessage] = useState<string | null>(null)
+
 	const {
 		register,
 		control,
@@ -32,12 +41,37 @@ export default function SignUpForm() {
 	})
 
 	async function onSubmit(data: SignUpFormData) {
-		console.log('Cadastro data:', data)
+		try {
+			setErrorMessage(null)
+			await registerUser(data)
+			toast.success('Conta criada com sucesso! Bem-vindo!')
+			router.push('/dashboard')
+		} catch (error) {
+			const apiError = error as ApiError
+			const errorMsg = apiError.message || 'Erro ao criar conta. Tente novamente.'
+			setErrorMessage(errorMsg)
+			toast.error(errorMsg)
+		}
+	}
+
+	// Mostrar erros de validação
+	const hasErrors = Object.keys(errors).length > 0
+	if (hasErrors && !isSubmitting) {
+		const firstError = Object.values(errors)[0]?.message
+		if (firstError) {
+			toast.error(firstError)
+		}
 	}
 
 	return (
 		<div className='flex w-full flex-col gap-8 sm:w-4/5 lg:w-1/2'>
 			<h2 className='text-secondary-default text-lg font-semibold'>Cadastre-se</h2>
+
+			{errorMessage && (
+				<div className='rounded-md bg-red-50 p-4 text-sm text-red-800'>
+					{errorMessage}
+				</div>
+			)}
 
 			<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-2'>
 				<TextInput

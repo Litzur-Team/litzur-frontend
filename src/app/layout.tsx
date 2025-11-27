@@ -1,5 +1,7 @@
 import '@/app/globals.css'
 import { Metadata } from 'next'
+import { AuthProvider } from '@/contexts/AuthContext'
+import ToastProvider from '@/components/ToastProvider'
 
 export const metadata: Metadata = {
   title: {
@@ -47,7 +49,12 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <AuthProvider>
+          {children}
+          <ToastProvider />
+        </AuthProvider>
+      </body>
     </html>
 	)
 }

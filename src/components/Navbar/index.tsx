@@ -1,3 +1,5 @@
+'use client'
+
 import {
 	Disclosure,
 	DisclosureButton,
@@ -10,6 +12,8 @@ import {
 import { Bars3Icon, XMarkIcon, ArrowLeftEndOnRectangleIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import Link from 'next/link'
+import toast from 'react-hot-toast'
+import { useAuth } from '@/contexts/AuthContext'
 
 const navigation: Array<NavItem> = [
 	{ name: 'Dashboard', href: '/dashboard', current: true },
@@ -28,6 +32,13 @@ function classNames(
 }
 
 export default function Navbar() {
+	const { user, logout } = useAuth()
+
+	const handleLogout = () => {
+		toast.success('Logout realizado com sucesso!')
+		logout()
+	}
+
 	return (
 		<Disclosure
 			as='nav'
@@ -82,7 +93,7 @@ export default function Navbar() {
 					<div className='absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
 						<div>
 							<span className='text-sm font-medium text-secondary-default hidden md:inline-block'>
-								Olá, Thiago
+								Olá, {user?.name || 'Usuário'}
 							</span>
 						</div>
 
@@ -121,13 +132,13 @@ export default function Navbar() {
 									</Link>
 								</MenuItem>
 								<MenuItem>
-									<Link
-										href='/signin'
-										className='data-focus:bg-gray-100 data-focus:outline-hidden px-4 py-2 text-sm text-danger-default flex items-center'
+									<button
+										onClick={handleLogout}
+										className='data-focus:bg-gray-100 data-focus:outline-hidden px-4 py-2 text-sm text-danger-default flex items-center w-full text-left'
 									>
 										Sair
                     <ArrowLeftEndOnRectangleIcon className='inline-block size-4 ml-2' />
-									</Link>
+									</button>
 								</MenuItem>
 							</MenuItems>
 						</Menu>
@@ -152,9 +163,9 @@ export default function Navbar() {
 						>
 							{item.name}
 						</DisclosureButton>
-					))}
-				</div>
-			</DisclosurePanel>
+				))}
+			</div>
+		</DisclosurePanel>
 		</Disclosure>
 	)
 }
