@@ -2,6 +2,7 @@ import '@/app/globals.css'
 import { Metadata } from 'next'
 import { AuthProvider } from '@/contexts/AuthContext'
 import ToastProvider from '@/components/ToastProvider'
+import VLibras from '@/components/VLibras'
 
 export const metadata: Metadata = {
   title: {
@@ -53,6 +54,7 @@ export default function RootLayout({
         <AuthProvider>
           {children}
           <ToastProvider />
+          <VLibras />
         </AuthProvider>
       </body>
     </html>
